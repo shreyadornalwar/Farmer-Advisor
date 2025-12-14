@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,224 +6,298 @@
 <title>Smart Farmer Crop Advisor</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", sans-serif;
-        background: linear-gradient(
-            to bottom,
-            #87ceeb 0%,
-            #b3e5fc 35%,
-            #c8e6c9 65%,
-            #66bb6a 100%
-        );
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .container {
-        background: rgba(255,255,255,0.95);
-        width: 460px;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-
-    h1 {
-        text-align: center;
-        color: #2e7d32;
-        margin-bottom: 20px;
-    }
-
-    label {
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    input, select, button {
-        width: 100%;
-        padding: 10px;
-        margin: 8px 0 15px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 15px;
-    }
-
-    button {
-        background: #2e7d32;
-        color: white;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: #1b5e20;
-    }
-
-    .result {
-        margin-top: 20px;
-        background: #f1f8e9;
-        padding: 15px;
-        border-radius: 10px;
-        font-size: 14px;
-    }
-
-    .crop {
-        font-size: 22px;
-        font-weight: bold;
-        color: #1b5e20;
-        margin-bottom: 10px;
-        text-align: center;
-    }
+body{
+    margin:0;
+    font-family:"Segoe UI",sans-serif;
+    background:linear-gradient(to bottom,#87ceeb,#b3e5fc,#c8e6c9,#66bb6a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.container{
+    background:#fff;
+    width:460px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+h1{
+    text-align:center;
+    color:#2e7d32;
+}
+label{
+    font-weight:bold;
+    font-size:14px;
+}
+input,select,button{
+    width:100%;
+    padding:10px;
+    margin:8px 0 15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+button{
+    background:#2e7d32;
+    color:white;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+}
+button:hover{background:#1b5e20;}
+.result{
+    margin-top:15px;
+    background:#f1f8e9;
+    padding:15px;
+    border-radius:10px;
+}
+.crop{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#1b5e20;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1 id="title">🌾 Smart Farmer Advisor</h1>
+<h1 id="title">🌾 Smart Farmer Advisor</h1>
 
-    <!-- Language -->
-    <label id="langLabel">Language</label>
-    <select id="language" onchange="changeLanguage()">
-        <option value="en">English</option>
-        <option value="hi">हिंदी</option>
-        <option value="te">తెలుగు</option>
-    </select>
+<label id="langLabel">Language</label>
+<select id="language" onchange="changeLanguage()">
+    <option value="en">English</option>
+    <option value="hi">हिंदी</option>
+    <option value="te">తెలుగు</option>
+</select>
 
-    <label id="timeLabel">Time Period</label>
-    <select id="timePeriod">
-        <option value="" id="optTimeSelect">Select</option>
-        <option value="present" id="optPresent">Present</option>
-        <option value="future" id="optFuture">Future</option>
-    </select>
+<label id="timeLabel">Time Period</label>
+<select id="timePeriod">
+    <option id="optPresent" value="present">Present</option>
+    <option id="optFuture" value="future">Future</option>
+</select>
 
-    <label id="tempLabel">Temperature (°C)</label>
-    <input type="number" id="temp" placeholder="25">
+<label id="tempLabel">Temperature (°C)</label>
+<input type="number" id="temp">
 
-    <label id="rainLabel">Rainfall</label>
-    <select id="rain">
-        <option value="" id="optRainSelect">Select</option>
-        <option value="low" id="optLow">Low</option>
-        <option value="medium" id="optMedium">Medium</option>
-        <option value="high" id="optHigh">High</option>
-    </select>
+<label id="rainLabel">Rainfall</label>
+<select id="rain">
+    <option id="optRainSelect" value="">Select</option>
+    <option id="optLow" value="low">Low</option>
+    <option id="optMedium" value="medium">Medium</option>
+    <option id="optHigh" value="high">High</option>
+</select>
 
-    <label id="soilLabel">Soil Type</label>
-    <select id="soil">
-        <option value="" id="optSoilSelect">Select</option>
-        <option value="loamy" id="optLoamy">Loamy</option>
-        <option value="clay" id="optClay">Clay</option>
-        <option value="sandy" id="optSandy">Sandy</option>
-        <option value="black" id="optBlack">Black</option>
-        <option value="red" id="optRed">Red</option>
-    </select>
+<label id="soilLabel">Soil Type</label>
+<select id="soil">
+    <option id="optSoilSelect" value="">Select</option>
+    <option id="optLoamy" value="loamy">Loamy</option>
+    <option id="optClay" value="clay">Clay</option>
+    <option id="optSandy" value="sandy">Sandy</option>
+    <option id="optBlack" value="black">Black</option>
+    <option id="optRed" value="red">Red</option>
+</select>
 
-    <button onclick="recommend()" id="btn">Get Recommendation</button>
+<button id="btn" onclick="recommend()">Get Recommendation</button>
 
-    <div id="output"></div>
+<div id="output"></div>
 </div>
 
 <script>
 const T = {
-    en: {
-        title:"🌾 Smart Farmer Advisor",
-        lang:"Language", time:"Time Period", temp:"Temperature (°C)",
-        rain:"Rainfall", soil:"Soil Type", btn:"Get Recommendation",
-        alert:"Please fill all fields",
-        opt:{select:"Select",present:"Present",future:"Future",
-             low:"Low",medium:"Medium",high:"High",
-             loamy:"Loamy",clay:"Clay",sandy:"Sandy",black:"Black",red:"Red"},
-        crops:{
-            rice:["🌾 Rice","Urea + DAP","High","120–150 days","30–35 quintals/acre","June–July","Ensure proper drainage"],
-            wheat:["🌾 Wheat","Urea + Potash","Medium","100–120 days","25–30 quintals/acre","Oct–Nov","Avoid excess water"],
-            millet:["🌱 Millet","Compost + NPK","Low","70–90 days","15–20 quintals/acre","June–July","Best for dry areas"]
-        }
-    },
-    hi: {
-        title:"🌾 स्मार्ट किसान सलाहकार",
-        lang:"भाषा", time:"समय अवधि", temp:"तापमान (°C)",
-        rain:"वर्षा", soil:"मिट्टी का प्रकार", btn:"सलाह प्राप्त करें",
-        alert:"कृपया सभी जानकारी भरें",
-        opt:{select:"चुनें",present:"वर्तमान",future:"भविष्य",
-             low:"कम",medium:"मध्यम",high:"अधिक",
-             loamy:"दोमट",clay:"चिकनी",sandy:"रेतीली",black:"काली",red:"लाल"},
-        crops:{
-            rice:["🌾 धान","यूरिया + डीएपी","अधिक","120–150 दिन","30–35 क्विंटल/एकड़","जून–जुलाई","उचित जल निकासी रखें"],
-            wheat:["🌾 गेहूं","यूरिया + पोटाश","मध्यम","100–120 दिन","25–30 क्विंटल/एकड़","अक्टूबर–नवंबर","अधिक पानी से बचें"],
-            millet:["🌱 बाजरा","कम्पोस्ट + एनपीके","कम","70–90 दिन","15–20 क्विंटल/एकड़","जून–जुलाई","सूखे क्षेत्र के लिए अच्छा"]
-        }
-    },
-    te: {
-        title:"🌾 స్మార్ట్ రైతు సలహాదారు",
-        lang:"భాష", time:"కాల వ్యవధి", temp:"ఉష్ణోగ్రత (°C)",
-        rain:"వర్షపాతం", soil:"నేల రకం", btn:"సిఫార్సు పొందండి",
-        alert:"దయచేసి అన్ని వివరాలు నమోదు చేయండి",
-        opt:{select:"ఎంచుకోండి",present:"ప్రస్తుత",future:"భవిష్యత్",
-             low:"తక్కువ",medium:"మధ్యమ",high:"ఎక్కువ",
-             loamy:"లోమీ",clay:"మట్టి",sandy:"ఇసుక",black:"నల్ల",red:"ఎరుపు"},
-        crops:{
-            rice:["🌾 వరి","యూరియా + డీఏపీ","ఎక్కువ","120–150 రోజులు","30–35 క్వింటాళ్లు/ఎకరం","జూన్–జూలై","నీటి పారుదల అవసరం"],
-            wheat:["🌾 గోధుమ","యూరియా + పొటాష్","మధ్యమ","100–120 రోజులు","25–30 క్వింటాళ్లు/ఎకరం","అక్టోబర్–నవంబర్","అధిక నీరు వద్దు"],
-            millet:["🌱 జొన్న","కంపోస్ట్ + ఎన్‌పీకే","తక్కువ","70–90 రోజులు","15–20 క్వింటాళ్లు/ఎకరం","జూన్–జూలై","ఎండ ప్రాంతాలకు అనుకూలం"]
-        }
-    }
+en:{
+ title:"🌾 Smart Farmer Advisor",
+ lang:"Language",time:"Time Period",temp:"Temperature (°C)",
+ rain:"Rainfall",soil:"Soil Type",btn:"Get Recommendation",
+ alert:"Please fill all fields",
+ opt:{
+  present:"Present",future:"Future",select:"Select",
+  low:"Low",medium:"Medium",high:"High",
+  loamy:"Loamy",clay:"Clay",sandy:"Sandy",black:"Black",red:"Red"
+ },
+ crops:{
+  rice:{
+   name:"🌾 Rice",
+   fertilizer:"Urea + DAP",
+   water:"High",
+   duration:"120–150 days",
+   yield:"30–35 quintals/acre",
+   sowing:"June – July",
+   tip:"Ensure proper drainage and standing water."
+  },
+  wheat:{
+   name:"🌾 Wheat",
+   fertilizer:"Urea + Potash",
+   water:"Medium",
+   duration:"100–120 days",
+   yield:"25–30 quintals/acre",
+   sowing:"October – November",
+   tip:"Avoid excess irrigation to prevent disease."
+  },
+  millet:{
+   name:"🌱 Millet",
+   fertilizer:"Compost + NPK",
+   water:"Low",
+   duration:"70–90 days",
+   yield:"15–20 quintals/acre",
+   sowing:"June – July",
+   tip:"Best suited for dry and drought-prone regions."
+  }
+ }
+},
+hi:{
+ title:"🌾 स्मार्ट किसान सलाहकार",
+ lang:"भाषा",time:"समय अवधि",temp:"तापमान (°C)",
+ rain:"वर्षा",soil:"मिट्टी का प्रकार",btn:"सलाह प्राप्त करें",
+ alert:"कृपया सभी जानकारी भरें",
+ opt:{
+  present:"वर्तमान",future:"भविष्य",select:"चुनें",
+  low:"कम",medium:"मध्यम",high:"अधिक",
+  loamy:"दोमट",clay:"चिकनी",sandy:"रेतीली",black:"काली",red:"लाल"
+ },
+ crops:{
+  rice:{
+   name:"🌾 धान",
+   fertilizer:"यूरिया + डीएपी",
+   water:"अधिक",
+   duration:"120–150 दिन",
+   yield:"30–35 क्विंटल/एकड़",
+   sowing:"जून – जुलाई",
+   tip:"खेत में पानी जमा रहने दें।"
+  },
+  wheat:{
+   name:"🌾 गेहूं",
+   fertilizer:"यूरिया + पोटाश",
+   water:"मध्यम",
+   duration:"100–120 दिन",
+   yield:"25–30 क्विंटल/एकड़",
+   sowing:"अक्टूबर – नवंबर",
+   tip:"अधिक सिंचाई से बचें।"
+  },
+  millet:{
+   name:"🌱 बाजरा",
+   fertilizer:"कम्पोस्ट + एनपीके",
+   water:"कम",
+   duration:"70–90 दिन",
+   yield:"15–20 क्विंटल/एकड़",
+   sowing:"जून – जुलाई",
+   tip:"सूखे क्षेत्रों के लिए उपयुक्त।"
+  }
+ }
+},
+te:{
+ title:"🌾 స్మార్ట్ రైతు సలహాదారు",
+ lang:"భాష",time:"కాల వ్యవధి",temp:"ఉష్ణోగ్రత (°C)",
+ rain:"వర్షపాతం",soil:"నేల రకం",btn:"సిఫార్సు పొందండి",
+ alert:"దయచేసి అన్ని వివరాలు నమోదు చేయండి",
+ opt:{
+  present:"ప్రస్తుత",future:"భవిష్యత్",select:"ఎంచుకోండి",
+  low:"తక్కువ",medium:"మధ్యమ",high:"ఎక్కువ",
+  loamy:"లోమీ",clay:"మట్టి",sandy:"ఇసుక",black:"నల్ల",red:"ఎరుపు"
+ },
+ crops:{
+  rice:{
+   name:"🌾 వరి",
+   fertilizer:"యూరియా + డీఏపీ",
+   water:"ఎక్కువ",
+   duration:"120–150 రోజులు",
+   yield:"30–35 క్వింటాళ్లు/ఎకరం",
+   sowing:"జూన్ – జూలై",
+   tip:"నీరు నిల్వ ఉండేలా చూడాలి."
+  },
+  wheat:{
+   name:"🌾 గోధుమ",
+   fertilizer:"యూరియా + పొటాష్",
+   water:"మధ్యమ",
+   duration:"100–120 రోజులు",
+   yield:"25–30 క్వింటాళ్లు/ఎకరం",
+   sowing:"అక్టోబర్ – నవంబర్",
+   tip:"అధిక నీరు వద్దు."
+  },
+  millet:{
+   name:"🌱 జొన్న",
+   fertilizer:"కంపోస్ట్ + ఎన్‌పీకే",
+   water:"తక్కువ",
+   duration:"70–90 రోజులు",
+   yield:"15–20 క్వింటాళ్లు/ఎకరం",
+   sowing:"జూన్ – జూలై",
+   tip:"ఎండ ప్రాంతాలకు అనుకూలం."
+  }
+ }
+}
 };
 
 function changeLanguage(){
-    const l=language.value, t=T[l];
-    title.innerText=t.title;
-    langLabel.innerText=t.lang;
-    timeLabel.innerText=t.time;
-    tempLabel.innerText=t.temp;
-    rainLabel.innerText=t.rain;
-    soilLabel.innerText=t.soil;
-    btn.innerText=t.btn;
+ const t=T[language.value];
+ title.innerText=t.title;
+ langLabel.innerText=t.lang;
+ timeLabel.innerText=t.time;
+ tempLabel.innerText=t.temp;
+ rainLabel.innerText=t.rain;
+ soilLabel.innerText=t.soil;
+ btn.innerText=t.btn;
 
-    optTimeSelect.innerText=t.opt.select;
-    optPresent.innerText=t.opt.present;
-    optFuture.innerText=t.opt.future;
-    optRainSelect.innerText=t.opt.select;
-    optLow.innerText=t.opt.low;
-    optMedium.innerText=t.opt.medium;
-    optHigh.innerText=t.opt.high;
-    optSoilSelect.innerText=t.opt.select;
-    optLoamy.innerText=t.opt.loamy;
-    optClay.innerText=t.opt.clay;
-    optSandy.innerText=t.opt.sandy;
-    optBlack.innerText=t.opt.black;
-    optRed.innerText=t.opt.red;
+ optPresent.innerText=t.opt.present;
+ optFuture.innerText=t.opt.future;
+ optRainSelect.innerText=t.opt.select;
+ optLow.innerText=t.opt.low;
+ optMedium.innerText=t.opt.medium;
+ optHigh.innerText=t.opt.high;
+ optSoilSelect.innerText=t.opt.select;
+ optLoamy.innerText=t.opt.loamy;
+ optClay.innerText=t.opt.clay;
+ optSandy.innerText=t.opt.sandy;
+ optBlack.innerText=t.opt.black;
+ optRed.innerText=t.opt.red;
 }
 
 function recommend(){
-    const l=language.value, t=T[l];
-    if(!temp.value||!rain.value||!soil.value||!timePeriod.value){
-        alert(t.alert); return;
+ const t = T[language.value];
+
+ if(!temp.value || !rain.value || !soil.value){
+  alert(t.alert);
+  return;
+ }
+
+ let crop;
+
+ if(rain.value === "low"){
+    if(soil.value === "sandy"){
+        crop = t.crops.millet;
+    } else {
+        crop = t.crops.millet; // fallback dry crop
     }
+ }
+ else if(rain.value === "medium"){
+    if(soil.value === "loamy"){
+        crop = t.crops.wheat;
+    } else {
+        crop = t.crops.wheat;
+    }
+ }
+ else { // high rain
+    if(soil.value === "clay" || soil.value === "black"){
+        crop = t.crops.rice;
+    } else {
+        crop = t.crops.rice;
+    }
+ }
 
-    let c=t.crops.rice;
-    if(rain.value==="medium"&&soil.value==="loamy") c=t.crops.wheat;
-    else if(rain.value==="low"&&soil.value==="sandy") c=t.crops.millet;
-
-    output.innerHTML=`
-        <div class="result">
-            <div class="crop">${c[0]}</div>
-            ⏳ <b>Duration:</b> ${c[3]}<br>
-            🧪 <b>Fertilizer:</b> ${c[1]}<br>
-            💧 <b>Water:</b> ${c[2]}<br>
-            📊 <b>Yield:</b> ${c[4]}<br>
-            📅 <b>Sowing:</b> ${c[5]}<br>
-            ⚠️ <b>Tip:</b> ${c[6]}
-        </div>`;
+ output.innerHTML = `
+ <div class="result">
+  <div class="crop">${crop.name}</div>
+  🧪 <b>Fertilizer:</b> ${crop.fertilizer}<br>
+  💧 <b>Water:</b> ${crop.water}<br>
+  ⏳ <b>Duration:</b> ${crop.duration}<br>
+  📊 <b>Yield:</b> ${crop.yield}<br>
+  📅 <b>Sowing:</b> ${crop.sowing}<br>
+  ⚠️ <b>Tip:</b> ${crop.tip}
+ </div>`;
 }
-</script>
-<a href="https://agriculture.gov.in" target="_blank"
-   style="display:block;text-align:center;margin-top:15px;color:#2e7d32;">
-   🌱 Learn more about crops
-</a>
 
+changeLanguage();
+</script>
 
 </body>
-</html>
+</html> add these to code give full code eithout deleting any feature
